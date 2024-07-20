@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/all.css">
+    <title>Caleb Obene's Portfolio</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff6f61 50%, #de1d47 50%);
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            padding-top: 1rem;
+            z-index: 1050;
+            display: flex;
+            flex-direction: column;
+            border-left: 2px solid tomato;
+            transition: all 0.3s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            background-color: rgba(255, 99, 71, 0.85);
+            padding: 0.5rem;
+            text-align: center;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-body {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 0.5rem;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.3s;
+            display: block;
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-link:hover {
+            background-color: #fff !important;
+            color: #000 !important;
+        }
+
+        .content {
+            margin-right: 250px;
+            padding: 1rem;
+            width: calc(100% - 250px);
+            overflow-y: auto;
+            height: 100vh; /* Ensure content area takes full viewport height */
+        }
+
+        .sidebar img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 1rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .split-content {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .split-content .content-box {
+            max-width: 800px;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            flex: 1;
+        }
+
+        .split-content .content-box h4 {
+            font-family: "Edu NSW ACT Foundation", cursive;
+            text-decoration: dotted;
+            color: brown;
+            text-align: center;
+        }
+
+        .split-content .content-box p {
+            font-family: 'Arial', sans-serif;
+            color: black;
+            text-shadow: 0px 5px 10px rgba(97, 68, 148, 0);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .carousel-inner img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .blog-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .blog-list li {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-list h5 {
+            margin: 0;
+            font-family: "Edu NSW ACT Foundation", cursive;
+            color: brown;
+        }
+
+        .blog-list p {
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 200px;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100%;
+                overflow-y: auto;
+            }
+
+            .content {
+                margin-right: 200px;
+                width: calc(100% - 200px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                flex-direction: column;
+                border-left: none;
+                padding-top: 0;
+                top: 0;
+                right: 0;
+            }
+
+            .sidebar-header {
+                width: 100%;
+                text-align: center;
+                font-size: 1rem;
+            }
+
+            .sidebar-body {
+                flex-direction: column;
+                align-items: center;
+                padding: 0.5rem;
+            }
+
+            .nav-link {
+                font-size: 0.8rem;
+                padding: 0.5rem;
+                white-space: normal;
+                overflow: visible;
+                text-overflow: clip;
+            }
+
+            .content {
+                margin-right: 0;
+                width: 100%;
+                height: auto; /* Allow height to adjust with content */
+            }
+
+            .split-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .split-content .content-box {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                flex-direction: column;
+                border-left: none;
+                padding-top: 0;
+            }
+
+            .sidebar-header {
+                width: 100%;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+
+            .sidebar-body {
+                flex-direction: column;
+                align-items: center;
+                padding: 0.5rem;
+            }
+
+            .nav-link {
+                font-size: 0.7rem;
+                padding: 0.5rem;
+                white-space: normal;
+                overflow: visible;
+                text-overflow: clip
+            }
+
+            .content {
+                margin-right: 0;
+                padding: 0.5rem;
+                width: 100%;
+                height: auto; /* Allow height to adjust with content */
+            }
+
+            .split-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .split-content .content-box {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                flex-direction: column;
+                border-left: none;
+                padding-top: 0;
+            }
+
+            .sidebar-header {
+                width: 100%;
+                text-align: center;
+                font-size: 0.8rem;
+            }
+
+            .sidebar-body {
+                flex-direction: column;
+                align-items: center;
+                padding: 0.5rem
+            }
+
+            .nav-link {
+                font-size: 0.6rem;
+                padding: 0.5rem;
+                white-space: normal;
+                overflow: visible;
+                text-overflow: clip
+            }
+
+            .content {
+                margin-right: 0;
+                padding: 0.5rem;
+                width: 100%;
+                height: auto; /* Allow height to adjust with content */
+            }
+
+            .split-content {
+                flex-direction: column;
+                align-items: center
+            }
+
+            .split-content .content-box {
+                max-width: 100%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h5>My Profile</h5>
+        </div>
+        <img src="images/caleb.png" class="img-fluid mx-auto d-block" alt="Caleb Obene">
+        <div class="sidebar-body">
+            <ul class="nav flex-column">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="skill.html">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="educ.html">Education</a></li>
+                <li class="nav-item"><a class="nav-link" href="work.html">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="exp.html">Experience</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="split-content">
+            <div class="content-box">
+                <h4 class="head">Education</h4>
+                <p>
+                    Here is a summary of my educational background, showcasing the schools I attended and the period I spent at each.
+                </p>
+                <ul class="education-list">
+                    <li><strong>Emota School, Ketu Tipper Garage, Lagos, Nigeria</strong><br>Nursery and Primary School (1999 - 2006)</li>
+                    <li><strong>Caleb International School, Lagos, Nigeria</strong><br>Nursery and Primary School (1999 - 2006)</li>
+                    <li><strong>Hebron College, Ogun State, Nigeria</strong><br>Secondary School (2008 - 2012)</li>
+                    <li><strong>MAPOLY (Moshood Abiola Polytechnic), Ogun State, Nigeria</strong><br>Polytechnic (2013 - 2016)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>
